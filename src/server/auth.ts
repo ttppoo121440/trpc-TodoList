@@ -39,6 +39,10 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
+    async jwt({ token }) {
+      token.userRole = "admin";
+      return token;
+    },
     session: ({ session, user }) => ({
       ...session,
       user: {
@@ -52,17 +56,14 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      allowDangerousEmailAccountLinking: true,
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID ?? "",
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET ?? "",
-      allowDangerousEmailAccountLinking: true,
     }),
     LineProvider({
       clientId: process.env.LINE_CLIENT_ID ?? "",
       clientSecret: process.env.LINE_CLIENT_SECRET ?? "",
-      allowDangerousEmailAccountLinking: true,
     }),
     /**
      * ...add more providers here.
