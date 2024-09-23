@@ -10,7 +10,7 @@ export const todoRouter = createTRPCRouter({
   }),
 
   create: protectedProcedure
-    .input(z.object({ text: z.string() }))
+    .input(z.object({ text: z.string().nonempty("不能為空") }))
     .mutation(({ ctx, input }) => {
       return ctx.db.todo.create({
         data: {

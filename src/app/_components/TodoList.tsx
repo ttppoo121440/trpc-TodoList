@@ -51,6 +51,7 @@ export function TodoList() {
           <input
             type="text"
             ref={inputRef}
+            required
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
             name="new-todo"
