@@ -12,6 +12,7 @@ datasource db {
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
+    // directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -35,12 +36,12 @@ model Account {
     type                     String
     provider                 String
     providerAccountId        String
-    refresh_token            String? @db.Text
-    access_token             String? @db.Text
+    refresh_token            String? //@db.Text
+    access_token             String? //@db.Text
     expires_at               Int?
     token_type               String?
     scope                    String?
-    id_token                 String? @db.Text
+    id_token                 String? //@db.Text
     session_state            String?
     refresh_token_expires_in Int?
     user                     User?   @relation(fields: [userId], references: [id])
